@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoapp">
+<head>
+	<meta charset="utf-8">
+	<title>Todo List</title>
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/bootstrap-theme.min.css">
+	<style type="text/css"></style>
+</head>
+
+<body>
+	<!-- -->
+	<div style="background-color: #dcdcdc; width: 373px">
+		<img src="./images/icon.jpg" width=30% height=30% alt="">
+		<button class="btn btn-primary">Todo List</button>
+	</div>
+
+	<!-- 引入人型时钟 -->
+	<div>
+		<object>
+			<embed src="./time.swf" width="373px;" height="150px;" align="center" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash"></embed>
+		</object>
+	</div>
+
+	<!-- 人型时钟 end -->
+
+	<div class="" style="width:373px">
+
+		<!-- 通过ng-controller调用js文件中的todolistcontroller -->
+		<section ng-controller="todolistcontroller">
+
+			
+
+			<!-- 输入框按钮开始 将输入框的值ng-model="text"绑定，在js中通过$scope.text调用 -->
+	<!-- class="input-group" 在input框前面、后面或者两边给"form-control"添加文字或按钮 -->
+			<form class="input-group input-group-lg">
+				<!-- bootstrap: class= "form-control" 输入框-->
+				<input ng-model="text" type="text" class="form-control">
+				<!-- 输入框后面的按钮 ng-click定义按钮事件 -->
+				<span class="input-group-btn">
+					<button class="btn btn-primary" ng-click="add()">Add </button>
+				</span>
+			</form>
+			<!-- 输入框按钮结束 -->
+
+			<!-- 清单开始,bootstrap列表组 list-group -->
+			<ul class="list-group">
+				<!-- ng-repeat依次显示清单内容, ng-class用于给元素动态绑定一个或者多个类  -->
+				<!-- 这里ng-class添加了一个对象，用的{key:value}对，key为类名，value为true/false -->
+				<!-- bootstrap列表组中添加元素 list-group-item -->
+
+				<li ng-repeat="item in todolist" ng-class="{'done': item.done}" class="list-group-item">
+
+					<!-- 关闭按钮开始 -->
+					<!-- close 是一个 CSS class，用于为模态窗口的关闭按钮设置样式, 即右边那个叉-->
+					<button ng-click="delete(item)" class="close" aria-label="close">
+						<!-- aria-hidden="true" 用于保持模态窗口不可见，直到触发器被触发为止（比如点击在相关的按钮上）-->
+						<!-- &times;是乘法符号，显示为关闭的那个叉号，点击这个叉号，窗口即hidden -->
+						<span aria-hidden="true">&times;</span> 
+						<!-- class="sr-only" 为残障人士设计，读出close -->
+						<span class="sr-only">Close</span>
+					</button>
+					<!-- 关闭按钮end -->
+
+					<!-- 复选框开始 -->
+					<div class="checkbox">
+						<label>
+							<!-- 复选框的值和item.done绑定，当复选框选中，item.done=true，对应和done相关的元素都会被修改-->
+							<input ng-model="item.done" type="checkbox">
+							<span>{{item.text}}</span>
+						</label>
+					</div>
+					<!-- 复选框end -->
+
+				</li>
+			</ul>
+			<!-- 清单结束 -->
+					
+			
+
+
+			
+		
+
+			<div class="well" align="center">
+			<p>
+				Total Tasks: <span class="badge">{{todolist.length}}</span>
+			</p>
+			<p>Done: <span class="badge">{{doneCount()}}</span></p>
+			</div>	
+		</section>
+	</div>	
+	<!-- import js files -->
+	<script type="text/javascript" src="./js/angular.min.js"></script>
+	<script src="./js/todolist.js"></script>
+</body>
+</html>

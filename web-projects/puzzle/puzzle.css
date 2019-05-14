@@ -1,0 +1,42 @@
+* {
+	padding:0;
+	margin: 0;
+	border: 0;
+} 
+/* *是通配符 */
+
+body {
+
+}
+
+#container {
+
+}
+
+#cell {
+
+}
+
+#cell div {
+
+}
+
+#cell div:hover {
+
+}
+
+#control {
+
+}
+
+#control rowspan {
+
+}
+
+#start {
+
+}
+
+#reset {
+	
+}
