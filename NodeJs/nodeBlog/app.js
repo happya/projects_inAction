@@ -23,6 +23,13 @@ mongoose.connection.on('error', console.error.bind(console, '连接数据库失�
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//app.use('logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+//app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 // 创建会话机制,在app.use('/',routes)前引入
 app.use(session({
   key: 'session',
@@ -36,17 +43,17 @@ app.use(session({
   saveUninitialized: true
 }));
 
-//app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-//app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
 
 // 使用flash
 app.use(flash());
+
+//路由控制器
+app.use('/', routes);
+app.use('/users', users);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -65,33 +72,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-/*//笔记详情
-app.get('/detail/:_id',checkLogin.nologin);
-app.get('/detail/:_id',function(req,res){
-	Note.findOne({_id: req.params._id})
-	.exec(function(err, art) {
-		if(err) {
-			console.log(err);
-			return res.redirect('/');
-		}
-		if(art) {
-			res.render('detail',{
-				title: '笔记',
-				user: req.session.user,
-				art: art
-			});
-		}
-	});
-
-});
-//退出登录
-app.get('/quit',function(req,res){
-	req.session.user = null;
-	console.log('Logout!');
-	return res.redirect('/login');
-});
-
-*/
 
 
 // 设置监听端口

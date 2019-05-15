@@ -1,7 +1,8 @@
-<%- include header %>
-<% arts.forEach(function(art) {%>
+<%- include header%>
+<% arts.forEach(function(art) { %>
+
 	<div class="article">
-		<a href="/u/<%= art.author %>/<%= art._id %>">
+		<a href="/u/<%= art.author%>/<%= art._id%>">
 			<h1><%= art.title %></h1>
 		</a>
 		<p>
@@ -9,19 +10,30 @@
 				<span class="text-bold">作者： </span>
 				<a href="/u/<%= art.author%>"><%= art.author %></a>
 			</span> |
-
 			<span class="create-time">
 				<span class="text-bold">时间： </span>
-				<%= moment(art.createTime).locale('zh-cn').format('LL HH:mm:ss')%>
+				<%= moment(art.createTime).format('LL HH:mm:ss') %>
+			</span> | 
+			<span class="pv">
+				<span class="text-bold">浏览： </span>
+				<%= art.pv %>
 			</span> |
-
-			<span class="label label-info"><%= art.tag %></span>
+			<span class="tag"><%= art.tag %></span>
 		</p>
-		<p><%= art.content%></p>
-		
-	</div>
+		<p></p>
+		<p></p>
+		<p><%= art.content %></p>
 
-<% }); %>
+		<% if (user) {%>
+		    <% if(art.author==user.username) {%>
+		        <div class="control">
+		        	<a href="/remove/<%= art._id%>" class="pull-right remove">删除</a>
+		        	<a href="/edit/<%= art._id%>" class="pull-right edit">编辑</a>
+		        </div>
+		    <% } %>
+		<%}%>
+	</div>
+<%});%>
 
 <nav>
 	<ul class="pager">
@@ -57,13 +69,12 @@
 
 <div id="pagination-box"></div>
 
-<div id="blog-data"
-total="<%= total %>"
-page="<%= page %>"
-pageSize="<%= pageSize %>"
-isFirstPage="<%= isFirstPage %>"
-isLastPage="<%= isLastPage %>"	>
+<div id="blog-data" 
+data-total="<%= total %>"
+data-page="<%= page %>"
+data-pageSize="<%= pageSize %>"
+data-isFirstPage="<%= isFirstPage %>"
+data-isLastPage="<%= isLastPage %>">	
 </div>
-<script src="/view-js/pagination.js"></script>
-
-<%- include footer %>
+<script src="../public/view-js/pagination.js"></script>
+<%- include footer%>
