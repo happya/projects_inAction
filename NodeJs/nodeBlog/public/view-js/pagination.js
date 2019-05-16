@@ -61,7 +61,7 @@ if(search) {//如果找,search
 				'<span aria-hidden="true">&raquo;</span></a></li>';
 	}else {
 		pagination+= '<li><a href="?search='+search+'&page='+(page+1)+'" aria-label="Next">'+
-					'<span aria-hidden"true">&raquo;</span></a></li>';
+					'<span aria-hidden="true">&raquo;</span></a></li>';
 	}
 } else { //如果不找,index
 
@@ -111,7 +111,7 @@ if(search) {//如果找,search
 	}
 	if(isLastPage){
 		pagination+='<li class="disabled"><a href="#" aria-label="Next">'+
-					+'<span aria-hidden="true">&raquo;</span></a></li>';
+				'<span aria-hidden="true">&raquo;</span></a></li>';
 	}else {
 		pagination += '<li><a href="?page='+(page+1)+'" aria-label="Next">'+
 					+ '<span aria-hidden="true">&raquo;</span></a></li>';
