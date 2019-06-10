@@ -6,11 +6,11 @@
 
 注册界面：
 
-![login_eg](imgs\login_eg.png)
+![login_eg](imgs/login_eg.png)
 
 登录及查询：
 
-![demo1](imgs\demo1.gif)
+![demo1](imgs/demo1.gif)
 
 　　和原始代码不同，这里的查询是可基于“标题(title)”和“标签(tag)”进行模糊查询。代码如下所示：
 
@@ -30,5 +30,5 @@
 
 对应于mongodb的数据：
 
-![demo2](imgs\demo2.gif)
+![demo2](imgs/demo2.gif)
 
